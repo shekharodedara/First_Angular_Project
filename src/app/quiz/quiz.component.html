@@ -1,0 +1,134 @@
+<div *ngIf="!dashboard">
+    <button style="margin-left: 5px; margin-top: 5px;" (click)="login=!login" *ngIf="!login">Login</button><button
+        style="margin-left: 5px; margin-top: 5px;" *ngIf="login" (click)="login=!login">Registration</button>
+    <div *ngIf="!login" style="margin-left: 5px;">
+        <h3 style="color: blue;">Registration</h3>
+        <form [formGroup]="form" (ngSubmit)="register(form.value)">
+            <input type="text" formControlName="name" placeholder="Name">
+            <span
+                *ngIf="form.controls['name'].touched && (form.controls['name'].errors?.['minlength'] || form.controls['name'].errors?.['pattern'])">Enter
+                Valid Name</span><br>
+            <input type="email" formControlName="email" placeholder="Email">
+            <span
+                *ngIf="form.controls['email'].touched && (form.controls['email'].errors?.['email'] || form.controls['email'].errors?.['minlength'])">Enter
+                Valid Email</span><br>
+            <input type="date" formControlName="dob" placeholder="Date Of Birth">
+            <span *ngIf="form.controls['dob'].touched && form.controls['dob'].errors?.['required']">Enter Valid Date Of
+                Birth</span><br>
+            <input type="password" formControlName="password" placeholder="Password">
+            <span *ngIf="form.controls['password'].touched && form.controls['password'].errors?.['pattern']">Enter Valid
+                Password</span><br>
+            <button type="submit" class="btn" [disabled]="!form.valid">Submit</button>
+        </form>
+    </div>
+
+    <div *ngIf="login" style="margin-left: 5px;">
+        <h3 style="color: blue;">Login</h3>
+        <form [formGroup]="formLogin" (ngSubmit)="Login(formLogin.value)">
+            <input type="text" formControlName="userName" placeholder="userName"><br>
+            <input type="password" formControlName="password" placeholder="Password"><br>
+            <button type="submit" style="margin-bottom: 7px;margin-top: 5px;" class="btn"
+                [disabled]="!formLogin.valid">Submit</button>
+        </form>
+    </div>
+    <a href="javascript:void(0)" style="margin-left: 7px;font-size: 18px;" (click)="dashboard = true;">Play as
+        Guest>></a>
+</div>
+
+<div *ngIf="dashboard">
+    <button style="margin-left: 5px; margin-top: 5px;" (click)="dashboard = !dashboard">LogOut</button>
+    <div style="margin-left: 5px;">
+        <h3 style="color: green;">Welcome to DashBoard</h3>
+        <div *ngIf="!result">
+            <div *ngFor="let q of question?.question; let i = index">
+                <div *ngIf="id==i">
+
+                    <p> {{q.question}} </p>
+                    <label style="color: blue;">Options: </label><br>
+
+                    <div *ngFor="let op of q.options">
+                        <div *ngFor="let opt of op.opt; let j = index">
+                            <div *ngFor="let option of op.option; let k = index">
+                                <div *ngIf="j == k">
+
+                                    <label for="{{opt}}">{{opt +' : '+ option}}</label>
+                                    <input type="radio" id="{{opt}}" name="options" value="{{opt}}"
+                                        (click)="optionSelected($event)"><br>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <button [hidden]="id >= question?.question.length" class="btn"
+                            [disabled]="id < 1 || id > question?.question.length" (click)="previousQues()"
+                            style="margin-right: 10px;">Previous</button>
+                        <button [hidden]="id == question?.question.length - 1" [disabled]="!next" class="btn"
+                            (click)="nextQuestion()">Next</button>
+                        <button [hidden]="id < question?.question.length - 1" (click)="finish()">Finish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="result" style="margin-top: 10px;">
+            <h4 style="color: blue;">You have answered {{totalScore}} question score out of
+                {{question?.question.length}}</h4>
+            <h4 style="color: green;">Percentage Result: {{totalScore * 10}}</h4>
+            <button (click)="quizEnd()">Play Again</button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ** static label and radio button ** -->
+<!--<label for="A">B : {{question[id].options[0]}}</label> <input type="radio" id="A" name="options" value="A" (click)="optionSelected($event)"><br>
+    <label for="B">B : {{question[id].options[1]}}</label> <input type="radio" id="B" name="options" value="B" (click)="optionSelected($event)"><br>
+    <label for="C">C : {{question[id].options[2]}}</label> <input type="radio" id="C" name="options" value="C" (click)="optionSelected($event)"><br>
+    <label for="D">D : {{question[id].options[3]}}</label> <input type="radio" id="D" name="options" value="D" (click)="optionSelected($event)"><br> -->
+
+
+<!-- ** form reset button for reset radio checked to unchecked ** -->
+<!-- <form>
+          <input type="radio" name="btn"> Item1
+          <input type="radio" name="btn"> Item2<br>
+          <input type="reset" value="Next">
+        </form> -->
+
+
+
+<!-- ** dynamic radio checked / unchecked ** -->
+<!-- <hr>
+<div *ngIf="dashboard">
+    <div *ngFor="let q of Q; let i = index" style="margin-left: 10px;">
+        <div *ngIf="id==i">
+            <p> {{q.question}} </p>
+            <label style="color: blue;">Options: </label><br>
+            <div *ngFor="let op of q.options">
+                <label for="{{op.A}}">{{op.opt+' : '+op.A}}</label>
+                <input type="radio" id="{{op.A}}" name="options" value="{{op.A}}" [checked]="op.checked"
+                    (click)="optionSelected($event)"><br>
+            </div>
+            <div style="margin-top: 10px;">
+                <button class="btn" style="margin-right: 10px;" [disabled]="i < 1"
+                    (click)="id = id - 1">Previous</button>
+                <button class="btn" (click)="id = id + 1" [disabled]="i==Q.length - 1">Next</button>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- 
+    Q:any;
+    this.Q = [{question:'what is angular?',options:[{A:'Framework', checked:true, opt:'A'}, 
+    {A:'Programing lang', checked:false, opt:'B'},{A:'library', checked:false, opt:'C'}, {A:'scripting lang', checked:false, opt:'D'}]},
+    {question:'what is angular?',options:[{A:'Framework', checked:false, opt:'A'}, 
+    {A:'Programing lang', checked:false, opt:'B'},{A:'library', checked:true, opt:'C'}, {A:'scripting lang', checked:false, opt:'D'}]},
+    {question:'what is angular?',options:[{A:'Framework', checked:false, opt:'A'}, 
+    {A:'Programing lang', checked:true, opt:'B'},{A:'library', checked:false, opt:'C'}, {A:'scripting lang', checked:false, opt:'D'}]},
+    {question:'what is angular?',options:[{A:'Framework', checked:false, opt:'A'}, 
+    {A:'Programing lang', checked:false, opt:'B'},{A:'library', checked:false, opt:'C'}, {A:'scripting lang', checked:true, opt:'D'}]},
+  ];
+ -->

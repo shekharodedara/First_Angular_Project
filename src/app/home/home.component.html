@@ -1,0 +1,141 @@
+<!-- <div margin-bottom="10px" style="background-color:  rgba(207, 240, 215, 0.637);"><hr>
+    <a routerLink='/userForm' style="font-size: 30px;margin-right: 20px; margin-left: 20px;">User Form</a>
+    <a routerLink='/product' style="font-size: 30px;margin-right: 20px;">Products</a>
+    <a routerLink='/employee' style="font-size: 30px;margin-right: 20px;">EmployeeDetail</a>
+    <a routerLink='/crudWithJsonServer' style="font-size: 30px;margin-right: 20px;">crudWithJsonServer</a>
+    <a routerLink='/shoppingCart' style="font-size: 30px;margin-right: 20px;">ShoppingCart</a>
+    <a routerLink='/studentDetail' style="font-size: 30px;">StudentDetail</a>
+    <a (click)="logOut()" style="font-size: 30px;float:right;margin-right: 10px;">LogOut</a>
+    <hr>
+</div> -->
+
+<!-- <div style="background-color: rgb(234, 250, 245);">
+    <hr>
+<a [routerLink]="['./']" fragment="week" style="font-size: 20px;margin-right: 20px;" (click)="highlight('week')">weekdays/weekends</a>
+<a [routerLink]="['./']" fragment="changeColor" style="font-size: 20px;margin-right: 20px;" (click)="highlight('text')">changeColor</a>
+<a [routerLink]="['./']" fragment="DomManipul" style="font-size: 20px;margin-right: 20px;" (click)="highlight('dom')">DomManipul</a>
+<a [routerLink]="['./']" fragment="bday-pipe" style="margin-right: 20px;font-size: 20px;" (click)="highlight('bde')">Bday Pipe</a>
+<a [routerLink]="['./']" fragment="genderPipe" style="font-size: 20px;margin-right: 20px;" (click)="highlight('gen')">GenderCheckPipe</a>
+<a [routerLink]="['./']" fragment="observable" style="font-size: 20px;" (click)="highlight('observable')">Observable</a>
+<br><hr>
+</div> -->
+
+<p style="font-size: 35px;text-align: center;">Hello <b>{{ser.username}}</b></p>
+<h1 style="font-size: 50px;text-align: center;">Welcome to Home Page</h1>
+<hr>
+
+<div *ngIf="toggleChild" style="background-color: #E5E5E5;border: 1px solid black;text-align: center;">
+    <app-child [child]='parent' (emitter)="addItem($event)"></app-child>
+</div>
+<div *ngFor="let item of parentArray">
+    <p style="font: bold 20px normal; margin: 2px 2px 2px 2px;" id="item">{{item}}</p>
+</div>
+<div *ngIf="message !== ''">
+    <h4>Child's Property: </h4>
+    <p id='ptag' style="color: blue; font-size: large;">{{message}}</p>
+</div>
+<button routerLink='child' (click)="toggleChild = !toggleChild"
+    style="margin-top: 10px;margin-left: 5px;">LoadChild/@Input</button>
+<br><br>
+
+<mat-tab-group backgroundColor="primary" color="warn">
+    <mat-tab label="Observables">
+        <div style="margin-left: 5px;">
+            <h3 style="color: green;">Observable: Subscribe to see the result, Same result can be seen on the console
+            </h3>
+            <button (click)='subscribe()' style="margin-left: 5px;margin-right: 30px;">Subscribe</button>
+            <button (click)="unsub()">Unsubscribe</button>
+            <h3 id='observ' style="color: blue;"></h3>
+        </div>
+
+        <div id="observable" #observable style="margin-left: 5px;">
+            <hr>
+            <h3 style="color: green;">Subscribe to an Observable using async pipe, angular will automatically subscribe
+                and unsubscribe for you while using this method.</h3>
+            <h3 style="color: red;">using api: <span
+                    style="color: blue;">https://jsonplaceholder.typicode.com/users</span></h3>
+            <table border="1" style="font-size: large;">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>Phone</th>
+                </tr>
+                <tr *ngFor="let user of obsar$ | async">
+                    <td style="text-align: center;padding: 0 15px 0 15px">{{user.id}}</td>
+                    <td style="text-align: center;padding: 0 15px 0 15px">{{user.name}}</td>
+                    <td style="text-align: center;padding: 0 15px 0 15px">{{user.email}}</td>
+                    <td style="text-align: center;padding: 0 15px 0 15px">{{user.phone}}</td>
+                </tr>
+            </table>
+        </div><br><br>
+    </mat-tab>
+
+    <mat-tab label="Angular-Pipes">
+        <div id='gen' style="margin-left: 5px;">
+            <h3 id="genderPipe" style="color: red;">Custom Pipe for Gender check</h3>
+            <span style="background-color: yellow;font-size: larger;">piped value: <b style="font-size: larger;">{{ ob |
+                    gender }}{{er}}</b></span><br>
+            <input type="radio" id="male" name="male" value='male' [(ngModel)]="gender">
+            <label for="male">male: </label><br>
+            <input type="radio" id="female" name="female" value='female' [(ngModel)]="gender">
+            <label for="female">female: </label><br>
+            <input type="text" [(ngModel)]="name" placeholder="enter name" style="margin-right: 10px;">
+            <button (click)="usePipe()">usePipe</button><br><br>
+        </div><br>
+        <hr>
+        <div id='bde' style="margin-left: 5px;">
+            <h3 id="bday-pipe" style="color: green;">Enter Birth date to see the output using Date Pipe </h3>
+            <label for="bday">Enter B'day: </label>
+            <input type="date" title="birthdate" name="bday" ngModel #bday="ngModel">
+            <p>Bday: {{bday.value}}</p>
+            <p>Piped Bday: {{bday.value | date:'fullDate'}}</p>
+            <br>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="Angular-Forms" style="margin-left: 5px;">
+        <app-angular-forms></app-angular-forms>
+    </mat-tab>
+
+    <mat-tab label="@viewChild">
+        <div id='dom' style="margin-left: 5px;">
+            <h3 style="color: red;">Manipulating dom element using @viewChild() decorator method</h3>
+            <p name="DomManipul" style="font-size: 20px;" #demo>Click below buttons to see changes</p>
+            <button (click)="change('text')" style="margin-right: 10px;">color</button>
+            <button (click)="change('bg')" style="margin-right: 10px;">BgColor</button>
+            <button (click)="change('font')" style="margin-right: 10px;">Font</button>
+            <button (click)="change('html')">text</button>
+            <br><br>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="Change Color">
+        <div id='text' style="margin-left: 5px;">
+            <h3 id="changeColor" style="color: green;">Task-2: Hello world and button</h3>
+            <p [ngClass]="{'green' : toggle, 'red': !toggle}">{{status}}</p>
+            <button (mousedown)="this.toggle = !this.toggle;" (mouseup)="this.toggle = !this.toggle;">MouseKey</button>
+            <button (click)="this.toggle = !this.toggle;" style="margin-left: 20px;">Toggle</button>
+            <br><br>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="classify Days">
+        <div id='week' style="margin-left: 5px;">
+            <h3 id="week" style="color: red;">Task-1: classify weekdays and weekends with use of Structural directive
+            </h3>
+            <div *ngFor="let day of days">
+                <div *ngIf="day=='sunday' || day=='saturday'"> <!-- ; else elseBlock"> -->
+                    <p>{{day}} : <span style="background-color: blue;color: azure;">Weekend</span></p>
+                </div>
+                <!-- <ng-template id="elseBlock" #elseBlock> <p>{{day}} : <span style="background-color: yellow">Weekday</span></p> </ng-template>  -->
+                <div *ngIf="day!=='sunday' && day!=='saturday'">
+                    <p>{{day}} : <span style="background-color: yellow">Weekday</span></p>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+
+    <mat-tab disabled></mat-tab>
+
+</mat-tab-group>

@@ -1,0 +1,77 @@
+{
+"question":
+  [
+    {
+        "question": "1. What is angular?", 
+        "options": 
+        [{
+            "opt":["A","B","C","D"], 
+            "option":["framework", "library", "programming language", "scripting language"]
+        }], 
+        "answer": "A"
+    },
+    {
+        "question": "2. How many type of forms in angular?", 
+        "options": 
+        [{
+            "opt":["A","B","C","D"], 
+            "option":["three", "two", "four", "one"]
+        }], 
+        "answer": "B"
+    },
+    {
+        "question": "3. What is TypeScript?", 
+        "options": 
+        [{
+            "opt":["A","B","C","D"], 
+            "option":["liabrary of JS", "subset of JS", "Superset of JS", "Built it function in JS"]
+        }], 
+        "answer": "C"
+    },
+    {
+        "question": "4. Angular Pipes are defined using?", 
+        "options": 
+        [{
+            "opt":["A","B","C","D"], 
+            "option":["@", "#", "&", "|"]
+        }], 
+        "answer": "D"
+    },
+    {
+        "question": "5. What is onInit?", 
+        "options": 
+        [{
+            "opt":["A","B","C","D","E"], 
+            "option":["Lifecycle Hook", "Decoretor", "Angular directive", "Library", "Directive"]
+        }], 
+        "answer": "A"
+    },
+    {
+        "question": "6. Who introduced Angular?", 
+        "options": 
+        [{
+            "opt":["A","B","C","D","E"], 
+            "option":["Microsoft", "Google", "Amazon", "Facebook", "IBM"]
+        }], 
+        "answer": "B"
+    },
+    {
+        "question": "7. What Angular Uses to transform data strings, Currency, Date or other data?", 
+        "options": 
+        [{
+            "opt":["A","B","C","D"], 
+            "option":["Directives", "Model", "Pipes", "Observables"]
+        }], 
+        "answer": "C"
+    },
+    {
+        "question": "8. In angular What can we use to transfer data to non-relational component?", 
+        "options": 
+        [{
+            "opt":["A","B","C","D"], 
+            "option":["Services", "@ViewChild", "@input", "@Output"]
+        }], 
+        "answer": "A"
+    }
+  ]
+}

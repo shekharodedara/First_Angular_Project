@@ -1,0 +1,29 @@
+<div *ngIf="loading" id="myModal" class="modal">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<nav mat-tab-nav-bar style="color:blue;" *ngIf="ser.home" backgroundColor="accent">
+  <a mat-tab-link routerLink='/home' style="font-size: medium;">Home</a>
+  <a mat-tab-link routerLink='/quiz' style="font-size: medium;">Take Quiz</a>
+  <a mat-menu-item [matMenuTriggerFor]="menu" style="font-size: medium;font-weight: 550; color: #867536;">Crud Operations</a>
+  <mat-menu #menu="matMenu">    
+    <a mat-menu-item routerLink='/crud' style="font-size: medium;;">Basic Crud</a>
+    <a mat-menu-item routerLink='/employee' style="font-size: medium;">Employee Crud</a>
+    <a mat-menu-item routerLink='/crudWithJsonServer' style="font-size: medium;">JsonServerCrud</a>    
+  </mat-menu>
+  <a mat-tab-link routerLink='/studentDetail' style="font-size: medium;">StudentDetailCrud</a>
+  <a mat-tab-link routerLink='/shoppingCart' style="font-size: medium;">ShoppingCartCrud</a>
+  <a mat-tab-link routerLink='home/product' style="font-size: medium;">Data Resolver()</a>
+  <a mat-tab-link (click)="logOut()" style="color: red; margin-left: auto;font-size: medium;">LogOut</a>
+</nav>
+
+<router-outlet></router-outlet>

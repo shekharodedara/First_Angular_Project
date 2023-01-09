@@ -1,0 +1,20 @@
+<div align="center" name="form" aria-required="true">
+  <h1 style="font-size: 50px;color: green;">Create Account</h1>
+  <label>*UserName: </label>
+  <input type="text" placeholder="Enter UserName" [(ngModel)]="userModel.user" autofocus>
+  <br><br>
+  <label>*Password: </label>
+  <input type="password" placeholder="Enter password" [(ngModel)]="userModel.pass">
+  <br><br>
+  <label>*Email: </label>
+  <input type="email" placeholder="Enter Email" [(ngModel)]="userModel.email">
+  <br><br>
+  <label>Phone No.: </label>
+  <input type="tel" placeholder="Enter Phone No." [(ngModel)]="userModel.phone" required minlength="10" maxlength="10">
+  <br><br>
+  <button type="submit" (click)="store()">
+    Create Account</button>
+  <br>
+  <a href="#" style="font-size: 18px;" routerLink="/login">Back to Login</a>
+  <p style="margin-top: 30px;color: red;" *ngIf="flag">"Please fill up all the *required fields"</p>
+</div>

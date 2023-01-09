@@ -1,0 +1,54 @@
+<!-- <br><div><a style="font-size: 30px;" href="#" routerLink="/home">Home</a></div><br>
+<hr> -->
+
+<div style="background-color: rgb(207, 240, 252);">
+    <br>
+    <div align="center">
+        <span style="font-size: 30px; font-weight: bold;">Form Using Templet Driven Forms</span>
+        <form #userData="ngForm" (ngSubmit)="onSubmit(userData.value)">
+            <p><label for="first">First Name: </label>
+                <input type="text" placeholder="Enter First Name" name="first" [(ngModel)]="first" required autofocus>
+            </p>
+            <p><label for="last">Last Name: </label>
+                <input type="text" placeholder="Enter Last Name" name="last" [(ngModel)]="last" required><br>
+            </p>
+            <div style="margin-bottom: 10px;">
+                <b>get value afrer submit data</b><br>
+                <span>First Name: </span><b>{{user.first}}</b><br>
+                <span>Last Name: </span><b>{{user.last}}</b>
+            </div>
+            <button type="submit" [disabled]="!userData.valid" margin-top="20px">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div align="center" style="background-color: rgb(203, 248, 231);">
+    <span style="font-size: 30px; font-weight: bold;">Form Using Reactive Forms</span>
+    <form [formGroup]="userDetail" (ngSubmit)="submitData()">
+        <p><label for="phone">Phone: </label>
+            <input type="tel" formControlName="phone" placeholder="Enter Phone No.">
+        </p>
+        <p><label for="mail">Email: </label>
+            <input type="email" formControlName="mail" placeholder="Enter mail Id">
+        </p>
+        <p><label for="city">City: </label>
+            <select id="city" formControlName="city">
+                <option value="" disabled>Choose your country</option>
+                <option *ngFor='let ct of cities' [ngValue]="ct">{{ct}}</option>
+            </select>
+        </p>
+        <button (click)="addControl()">+Add Hobby</button>
+        <div formArrayName="hobbies" *ngFor="let hobby of hobbies.controls; let i = index">
+            <label for="hobby-{{i}}">Hobby{{i}}: </label>
+            <input id="hobby-{{i}}" type="text" name="hobby" [formControlName]="i">
+        </div>
+        <b>get value if form is valid</b><br>
+        <div *ngIf="userDetail.valid" style="margin-bottom: 10px;">
+            <span>Phone: </span><b>{{userDetail.controls['phone'].value}}</b><br>
+            <span>Email: </span><b>{{userDetail.controls['mail'].value}}</b><br>
+            <span>City: </span><b>{{userDetail.controls['city'].value}}</b>
+            <div *ngFor="let i of hobbies.value; let j = index"><span>Hobby{{j}}: </span><b>{{i}}</b><br></div>
+        </div>
+        <button type="submit" [disabled]="!userDetail.valid" style="margin-top: 10px;">Submit Detail</button>
+    </form>
+</div><br><br>

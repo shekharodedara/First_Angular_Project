@@ -1,0 +1,50 @@
+<form #em="ngForm" (ngSubmit)="onSubmit(em.value)">
+    <div style="margin-left: 20px;">
+        <h1 style="color: green;">Employee Form</h1>
+        <table style="width: 15%;">
+            <tr>
+                <td><span *ngIf="emp.updateImage"><label>Old Image: </label><br>
+                        <img src="{{emp.updateImage}}" alt="image.jpg"
+                            width="50px"><!-- {{'assets/' + emp.updateImage}} -->
+                    </span></td>
+                <td><span *ngIf="emp.preview"><label>Preview Image: </label><br>
+                        <img src="{{emp.preview}}" alt="image.jpg" width="50px">
+                    </span></td>
+            </tr>
+        </table>
+        <label for="image">Select Image:</label><br>
+        <input type="file" accept="image/jpeg, image/jpg, image/png" (change)="saveImage($event)"
+            [(ngModel)]="emp.image" name="image"><br>
+        <label for="name">Enter Name:</label><br>
+        <input type="text" [(ngModel)]="emp.name" name="name"><br>
+        <label for="post">Enter Post:</label><br>
+        <input type="text" [(ngModel)]="emp.post" name="post"><br>
+        <label for="age">Enter Age:</label><br>
+        <input type="number" [(ngModel)]="emp.age" name="age"><br>
+        <label for="sal">Enter Salary:</label><br>
+        <input type="number" [(ngModel)]="emp.salary" name="salary"><br>
+        <label>Select Country: </label>
+        <select [(ngModel)]="emp.country" name="country" style="margin-top: 10px;margin-bottom: 10px;"
+            (change)="selectCountry($event)"> <!-- $any($event.target).value // -->
+            <option disabled>Select Your Country</option>
+            <option *ngFor="let country of countries" name='country' [value]="country.country">{{country.country}}
+            </option>
+        </select><br>
+        <label>Select State: </label>
+        <select [(ngModel)]="emp.state" name="state" style="margin-top: 10px;margin-bottom: 10px;"
+            (change)="selectCity($event)" (focus)="initState()">
+            <option disabled>Select Your State</option>
+            <option *ngFor="let state of emp.setState" name='state' [value]="state">{{state}}</option>
+        </select><br>
+        <label>Select city: </label>
+        <select [(ngModel)]="emp.city" name="city" style="margin-top: 10px;margin-bottom: 10px;" (focus)="initState()">
+            <option disabled>Select Your City</option>
+            <option *ngFor="let city of emp.setCity" name='city' [value]="city">{{city}}</option>
+        </select><br>
+        <label for="doj">Date Of Joining:</label><br>
+        <input type="date" [(ngModel)]="emp.dateOfJoining" name="dateOfJoining"><br>
+        <button id="btn" type="submit" style="margin-top: 15px;">{{emp.btn}}</button>
+        <!-- <p>{{emp | json}}</p>
+        <p>{{em.value | json}}</p> -->
+    </div>
+</form>

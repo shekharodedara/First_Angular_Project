@@ -1,0 +1,9 @@
+<!-- <br><a href="#" routerLink='/home' style="font-size: 30px;">Home</a><br><p></p><hr> -->
+<div align="center">
+    <h1 style="color: rgb(14, 11, 235);">Employee Detail</h1>
+</div>
+<button type="submit" (mouseup)="emp.toggle = !emp.toggle" (mousedown)="addEmployee()" style="margin-left: 5px;">Add
+    Employee</button>
+<app-emp-form *ngIf="emp.toggle"></app-emp-form>
+<p></p>
+<app-emp-table></app-emp-table>

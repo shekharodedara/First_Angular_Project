@@ -1,0 +1,28 @@
+<table>
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Post</th>
+        <th>Age</th>
+        <th>Salary</th>
+        <th>Address</th>
+        <th>Date of Joining</th>
+        <th>Update/Delete</th>
+    </tr>
+    <tr *ngFor="let i of lstorage!; let j = index">
+        <td><img src="{{i.image}}" alt="employee.jpg" width="30px"></td><!-- {{'assets/' + i.image}} -->
+        <td>{{i.name}}</td>
+        <td>{{i.post}}</td>
+        <td>{{i.age}}</td>
+        <td>{{i.salary}}</td>
+        <td><span *ngIf="i.country">{{i.city + ', ' + i.state + ', ' + i.country}}</span></td>
+        <td>{{i.dateOfJoining}}</td>
+        <td>
+            <button type="button" id="up" (click)="updat(i,j)" style="background-color: #2f80ed;color:white;margin-right: 7px;border-radius: 4px;border-style: none;font-size: 15px;font-weight: 500;padding: 3px 10px;
+            font-family: system-ui,Arial,sans-serif;">Update</button>
+            <button type="button" id="del" (click)="delet(j)" style=" background-color: rgb(248, 62, 62);color: white;
+            border-radius: 4px;border-style: none;font-size: 15px;font-weight: 500;
+            padding: 3px 14px;font-family: system-ui,Arial,sans-serif;">delete</button>
+        </td>
+    </tr>
+</table>

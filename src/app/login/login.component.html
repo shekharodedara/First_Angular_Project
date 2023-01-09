@@ -1,0 +1,17 @@
+<div align="center">
+  <h1 style="font-size: 50px;color: blue;">Log In</h1>
+  <label for="user">UserName: </label>
+  <input type="text" placeholder="Enter UserName" id="user" [(ngModel)]="user" style="margin: .25rem .25rem .5rem 0;"
+    autofocus>
+  <br><br>
+  <label for="passw">Password: </label>
+  <input type="password" placeholder="Enter password" [(ngModel)]="pass" id="passw">
+  <br><br>
+  <button (click)="logIn(user,pass)" (mouseup)="warn()">
+    LogIn</button>
+  <br>
+  <a routerLink="forgot-password" style="font-size: 18px;">Forgot password</a> <!-- href onclick="return false;" -->
+  <br>
+  <a style="font-size: 18px;" routerLink="create-user">Create new account</a>
+  <p style="margin-top: 30px;color: red;" *ngIf="flag">"Invalid Username or Password"</p>
+</div>

@@ -1,0 +1,6 @@
+<h1>{{child}}</h1>
+<label style="font: bold 20px normal;" for="name">first name: </label>
+<input style="margin-right: 10px;" type="text" name="name" #namesArray>
+<button type="button" (click)="emitEvent(namesArray.value)">ShareData/@Output</button>
+<h4>Parent's Property: : </h4>
+<p style="color: green; font-size: large;"> {{msgFromParent}}</p><br><br>

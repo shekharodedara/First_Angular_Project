@@ -1,0 +1,44 @@
+<h1 align="center">Basic Crud</h1>
+<button style="margin-left: 5px;margin-bottom: 5px;" (click)="toggle=!toggle && submit = true">Add Member</button>
+<form [formGroup]="form" style="margin-left: 15px;margin-top: 10px;" (ngSubmit)="submitData(form.value,form)"
+    autocomplete="off" *ngIf="toggle">
+    <input type="text" id="name" formControlName="name" placeholder="name">
+    <span
+        *ngIf="form.controls['name'].touched && (form.controls['name'].errors?.['minlength'] || form.controls['name'].errors?.['pattern'])"
+        style="color: red;">Invalid Name</span><br>
+    <input type="number" id="age" formControlName="age" placeholder="age">
+    <span *ngIf="form.controls['age'].touched && form.controls['age'].errors?.['min']" style="color: red;">Invalid
+        Age</span><br>
+    <input type="email" id="email" formControlName="email" placeholder="email">
+    <span *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['email']" style="color: red;">Invalid
+        Email</span><br>
+    <input type="text" id="mobile" formControlName="mobile" placeholder="mobile">
+    <span
+        *ngIf="(form.controls['mobile'].touched && form.controls['mobile'].errors?.['minlength']) || (form.controls['mobile'].touched && form.controls['mobile'].errors?.['maxlength'])"
+        style="color: red;">Invalid Mobile</span><br>
+    <button class="btn" type="submit" *ngIf="submit" [disabled]="!form.valid">Submit</button>
+    <Button class="btn" type="submit" *ngIf="!submit" [disabled]="!form.valid || !form.dirty">Update</Button>
+</form>
+<table style="border: 1px solid black;">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let i of lstorage; let j = index">
+        <td>{{i.name}}</td>
+        <td>{{i.age}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.mobile}}</td>
+        <td>
+            <button class="up" (click)="up(j,i)">
+                Update
+            </button>
+            <button class="del" (click)="del(j)">
+                Delete
+            </button>
+        </td>
+    </tr>
+</table>

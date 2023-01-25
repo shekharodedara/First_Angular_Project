@@ -37,6 +37,16 @@ export class HomeComponent implements OnInit, AfterViewInit, AfterViewChecked {
   parentArray: string[] = [];
   obsar$: Observable<any> = this.ser.getUserData();
   private mysub: Subscription;
+  namesearch: string = ''
+  productArray: any[] = [
+    { sno: 1, name: 'mobile', price: '34000', availabilty: 'Available' },
+    { sno: 2, name: 'T.V', price: '56000', availabilty: 'Not-Available' },
+    { sno: 3, name: 'Leptop', price: '84000', availabilty: 'Available' }, 
+    { sno: 4, name: 'mobile(samsung)', price: '64000', availabilty: 'Not-Available' }, 
+    { sno: 5, name: 'Washing Machine', price: '27000', availabilty: 'Available' },
+    { sno: 6, name: 'Heater', price: '4000', availabilty: 'Not-Available' }, 
+    { sno: 7, name: 'A.c', price: '30000', availabilty: 'Available' }, 
+    { sno: 8, name: 'frigth', price: '24000', availabilty: 'Available' }  ];
 
   @ViewChild('demo') demo: ElementRef;
   @ViewChild(ChildComponent) child: any;

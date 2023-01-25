@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {MatTabsModule} from '@angular/material/tabs';
 import { AngularFormsComponent } from './angular-forms/angular-forms.component';
 import { ResolverResolver } from '../resolver.resolver';
+import { FilterPipe } from './filter.pipe';
 
 const routes: Routes = [
   {
@@ -40,6 +41,7 @@ const routes: Routes = [
     AngularFormsComponent,
     ProductComponent,
     GenderPipe,
+    FilterPipe,
     AngularFormsComponent
   ],
   imports: [
@@ -53,7 +55,6 @@ const routes: Routes = [
     DeactivateGuard,
     AuthGuard,
     ResolverResolver
-  ],
-  // exports:[CounterPipe]
+  ]
 })
 export class HomeModule { }

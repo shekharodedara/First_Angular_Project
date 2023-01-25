@@ -27,6 +27,9 @@
     margin: 8px 0;
     box-sizing: border-box;
   }
+  table {  font-family: arial, sans-serif;  border-collapse: collapse;  width: 100%; }
+  td,th {  border: 1px solid #dddddd;  text-align: center; }
+  tr:nth-child(even) {  background-color: #dddddd; }
 
   /* Styles for tab labels */
 // .mat-tab-label {

@@ -70,6 +70,31 @@
             </table>
         </div><br><br>
     </mat-tab>
+  
+  <mat-tab label="Filter Table">
+<div align="center">
+  <h2>filter Table</h2>
+</div>
+<input type="text" placeholder="add product" #add>
+<button (click)="onaddproduct(add)">Add Product</button><br>
+<input type="search" placeholder="search products name" [(ngModel)]="namesearch">
+<div>
+  <table>
+    <tr>
+      <th scope="col">sno</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Availabilty</th>
+    </tr>
+    <tr *ngFor="let product of productArray | filter:namesearch">
+      <th scope="row">{{product.sno}}</th>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td><span class="">{{product.availabilty}}</span></td>
+    </tr>
+  </table>
+</div>
+</mat-tab>
 
     <mat-tab label="Angular-Pipes">
         <div id='gen' style="margin-left: 5px;">
